@@ -1,0 +1,1 @@
+Powershell c:\MMode.ps1 -rootMS: <RMS server name> -group: <Group name> - Numberofhoursinmaintenancemode: 1 -Comment: 'This is a test'
