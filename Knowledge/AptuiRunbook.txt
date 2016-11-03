@@ -1,0 +1,295 @@
+---+ %TOPIC%
+
+%TOC%
+
+---++ Overview
+%H% This section provides an overview of your application, include a brief description of what the application does.
+
+Creative Creation and Management PRD:  http://twiki.corp.yahoo.com/view/Apex/PRD-ApplicationsDemand-CampaignCreationAndManagement
+
+Network Demand Campaign Management Engineering:  http://twiki.corp.yahoo.com/view/Apex/DemandAppCT
+
+Team Members: 
+   [[http://bug.corp.yahoo.com/products.cgi?product=Apt%20Network%20App%20Backend][Demand BL team]]
+   [[http://bug.corp.yahoo.com/products.cgi?product=Apt%20Network%20App%20UI][UI Team]]
+
+---+++ Variables
+
+
+   * Set ac4vip=aptui51.adx.vip.ac4.yahoo.com
+
+   * Set ch1vip=aptui32.adx.vip.ch1.yahoo.com
+
+   * Set stgvip=stgaptui21.adx.vip.ne1.yahoo.com
+
+   * Set status=b
+
+   * Set ac4rot=www5102.apt.yahoo.com
+
+   * Set ch1rot=www3202.apt.yahoo.com
+
+   * Set app=aptui
+   
+   * Set stgapp=AptUI
+
+---++ Deployment Diagrams
+%H% This section provides links to the location of environment-specific deployment diagrams.
+
+Front End:        http://twiki.corp.yahoo.com/view/Apex/E2ELZDeploymentDiagramAppsFrontEndTop
+
+Back End:         http://twiki.corp.yahoo.com/view/Apex/E2ELZDeploymentDiagramAppsBackEndTop
+
+http://twiki.corp.yahoo.com/view/Apex/APTConsolidatedServerUIChanges - Setup in general
+
+---++ Administration
+%H% This section should provide instructions to perform the common administration procedures for your application.
+
+
+*Server Roles*
+
+Server role: aptui - http://centcom.ysm.yahoo.com:9999/C2/useradmin/MachineHandler/findHosts?chk_query_hostname=ac4-1aptui&x=0&y=0&page=1
+
+*DB Roles*
+
+DB role: tbd
+
+
+   *  Start Procedure<pre style="border: thin solid; padding-left: 1em;">
+   (taxi command to start entire pod)
+   pogo run -I @displayapps.set.ac4-prod-pod1.aptsvr_x64 "yinst start"
+
+   pogo run -I @displayapps.set.ch1-prod-pod2.aptsvr_x64 "yinst start"
+
+   (to start individual server, logon to server and do the following)
+   yinst start
+</pre>
+   * Stop Procedure<pre style="border: thin solid; padding-left: 1em;">
+   (taxi command to stop entire pod)
+   pogo run -I @displayapps.set.ac4-prod-pod1.aptsvr_x64 "yinst stop"
+
+   pogo run -I @displayapps.set.ch1-prod-pod2.aptsvr_x64 "yinst stop"
+
+   (to stop individual server, logon to server and do the following)
+   yinst stop
+ 
+   * How to check if service is running*
+      * ps -ef | grep java (to check if jboss is running)
+      * check vip : http://vipviewer.corp.yahoo.com/view.php?searchtype=vs&val=aptui.adx.vip.ac4.yahoo.com+&x=23&y=13
+
+
+   * How to take a machine out of rotation?<pre style="border: thin solid; padding-left: 1em;">
+   yinst deac in_rotation
+</pre>
+   * Error Log Location?<pre style="border: thin solid; padding-left: 1em;">
+   /home/y/logs/yjava_jboss/server.log
+</pre>
+   * Some examples to invoke the service (web or commandline)?
+   * Some examples (web or commandline) to look at environment variables? 
+      * SET role for DEMANDUI
+      * http://igor.corp.yahoo.com/igor/ui/role/members?role=displayapps.set.ac4-prod-pod1.aptui
+
+      * APP role for DEMANDUI
+      * http://igor.corp.yahoo.com/igor/ui/role/members?role=displayapps.app.demandui
+
+</pre>
+
+
+---++ Service Level Agreements (SLAs)
+%H% This section should link to SLAs defined for your application.
+
+Here is some contextual information about SLA's: http://twiki.corp.yahoo.com/view/Apex/OperabilityCertificationQuestionnaireNetworkApplication#OcqSla
+
+
+| *Component* | *SLA Metric* | *SLA Target* | *I/E* |
+| | | | |
+
+__Legend:__
+
+   * *Component*: Identify the component or "System" for overall system SLA
+   * *SLA Metric*: Identify what is measured by the SLA.
+   * *SLA Target*: Identify the target value. 
+   * *I/E*: Specify whether the SLA is internal or external.
+
+---++ Escalation Procedure for Critical Alerts
+%H% This section describes the escalation procedure and contact schedule for critical alerts.
+
+   * Production Engineering Contact info (ilist and/or hierarchical personnel contact info including pager).  
+      * on call schedule:  http://twiki.corp.yahoo.com/view/Overture/OnCallCalendar#ASO_Ad_Apps_On_call_Guide
+      * ilist: aso-adapps@yahoo-inc.com
+   * Engineering contact info (ilist and/or hierarchical personnel contact info including pager).
+      * on call schedule:
+      * ilist:
+   * ilist: http://twiki.corp.yahoo.com/view/Apex/LZApplication#LZ_App_Dev_POCs
+
+   * Product Contact info (ilist and/or hierarchical personnel contact info including pager).
+      * ilist:
+     * Network Mgmt Product Mgr: ([[http://backyard.yahoo.com/tools/g/employee/profile?user_id=hartman][Steven Hartman]] (hartman@yahoo-inc.com)
+
+
+---++ Application Criticality Rating (ACR) and Recovery Time Objective (RTO)
+%H% This section should provide information about your ACRs and RTOs down to the component level.
+
+
+Information can be found here:
+http://twiki.corp.yahoo.com/view/Apex/OperabilityCertificationQuestionnaireNetworkApplication#OcqBcpAcrAndRto
+http://twiki.corp.yahoo.com/view/SAProdEng/OperabilityCertificationQuestionnaireDisplayApps
+
+
+---++ Alerts & Associated Procedures
+%H% This section should describe any alerts or warnings that are generated by your monitoring, grouped by severity.  For each alert, there must be a separate page which describes the alert, alert verification steps, resolution steps, and fix verification steps.  Use the form below to create new procedure documentation for your alert.  Don't for
+
+%TWISTY{showlink="Create New Alert Procedure" showimgleft="%ICONURLPATH{toggleopen-small}%" hideimgleft="%ICONURLPATH{toggleclose-small}%" hidelink="Create New Alert Procedure" mode="div" remember="off" firststart="hide" start=hide"}% 
+<blockquote>
+
+__Naming Convention:__ Please use the following naming convention when naming your TWiki Page: {System}{ Serving | Data | Apps }{Application}Alert{AlertCode}
+
+   * System = Apex, Panama, etc.
+   * Serving, Data, or Apps
+   * Application Name
+   * Alert Code / Alert Identifier
+
+<form name="new" action="%SCRIPTURLPATH{edit}%/%WEB%/">
+__New Alert Procedure TWiki Topic:__
+     <input type="text" name="topic" value="{System}{ Serving | Data | Apps }{Application}Alert{AlertCode}" size="70" />
+     <input type="hidden" name="templatetopic" value="SAProdEng.SopRunBookAlertTemplate" />
+     <input type="hidden" name="topicparent" value="%TOPIC%" />
+     <input type="hidden" name="onlywikiname" value="on" />
+     <input type="hidden" name="onlynewtopic" value="on" />
+     <input type="submit" class="twikiSubmit" value="Create" />
+</form>
+
+%X% After you document your new alert procedure, don't forget to add a link to it in the list below.
+</blockquote>
+%ENDTWISTY%
+
+   * TBD
+
+   * Emergency Alerts
+      * < name of alert > - < link to alert detail page >
+   * Critical Alerts
+      * < name of alert > - < link to alert detail page >
+
+---++ Current Issues
+%H% This section should describe known recurring issues with your application, and the associated triage required for these issues.
+
+Current open tickets for Demand Apps:
+
+http://bug.corp.yahoo.com/buglist.cgi?&bug_status=__open__&product=Apt%20Network%20App%20Backend&priority=--
+
+[[apt_order_status_issues][apt order status issues]]
+
+---+++ BT SEGMENT ISSUE troubleshooting
+
+Please refer to bug:5882808 and comment #57 on bug:5875418
+
+Please do not update the tables manually. This needs to be fixed from client side.
+
+http://twiki.corp.yahoo.com/view/AptUIDocs/SegmentLifecycle
+
+---++ BCP Runbooks
+%H% This section should provide links to the BCP runbooks. 
+
+* Currently no BCP at this time. However, please review the following link for more information about BCP for these apps: http://twiki.corp.yahoo.com/view/SAProdEng/Pod51toSK1BCP5new
+
+
+
+
+
+---+++ Primary/BCP Locations
+%H% This section lists the primary locations where your application resides.  For each location, indicate the market(s) served, and the designated BCP location.
+
+
+
+| *Primary* | *BCP* | *Market(s)* |
+| ac4 | sk1 | |
+| ch1 | ac4 | |
+
+---+++ Critical Dependencies
+%H% List your critical dependencies and indicate the action required if a failure occurs; link to procedures where applicable.
+
+| *Dependency* | *Action* | *Link to Procedure* |
+| IMS | Contact IMS SE immediately to investigate IMS problem.  | See twiki at http://twiki.corp.yahoo.com/view/Overture/OCView-AppOps#IMS_sme_Vito_Leung|
+| Pricing | | |
+| Geo Servers | | |
+| Keyword Research Service | | |
+| Real Time Forecasting (RTF) | | |
+| Scheduler | | |
+| IDMBE | | |
+
+---++++ Brief idea about the dependencies
+
+   * *IMS* - Stands for Inventory Management System. Demandui queries IMS for the available inventory.
+   * *Pricing* - Pricing servers query the colo db for pricing information on any given inventory and provide the same during the order booking.
+   * *Geo Servers* - Demand orders can be booked on a myriad of variable based on demography. The internetlocality service running on geoapi servers provide the demography information during inventory search and booking.
+   * *DQM* - Demand relies on DQM for order approval workflow.
+   * *Scheduler* - Demand client on the scheduler hosts kick off the job to construct a javascript file for the targeting data from database. This data is uploaded to mobstor and UI (specifically single order workspace) loads this page from mobstor. 
+
+<iframe src="http://sk1-asoymon-002.ysm.corp.sk1.yahoo.com/index.php?role=%app%" width="100%" height="300">
+  <p>Your browser does not support iframes.</p>
+</iframe>
+
+
+---++ Monitoring
+%H% This section should provide links to the monitoring for your application for each environment (within the sections below).  
+
+   * Dashboard :
+     [[[http://ac4-asoymon-002.ysm.corp.ac4.yahoo.com:9999/ygrapher/dashboard?dashboard=PRD%20aptui][Production]]] 
+     [[[http://ac4-asoymon-002.ysm.corp.ac4.yahoo.com:9999/ygrapher/dashboard?dashboard=TRG%20aptui][Training]]] 
+     [[[http://ac4-asoymon-001.ysm.corp.ac4.yahoo.com:9999/ygrapher/dashboard?dashboard=STG2%20aptUI][Staging]]] 
+     [[[http://ac4-asoymon-001.ysm.corp.ac4.yahoo.com:9999/ygrapher/dashboard?dashboard=INT1%20aptUI][Integration]]] 
+   * Alerts :
+     [[[http://ac4-asoymon-002.ysm.corp.ac4.yahoo.com:9999/nagios/APEXPROD/cgi-bin/status.cgi?hostgroup=aptui&style=detail][Production]]] 
+     [[[http://ac4-asoymon-002.ysm.corp.ac4.yahoo.com:9999/nagios/APEXTRG/cgi-bin/status.cgi?hostgroup=aptui_hosts&style=detail][Training]]] 
+     [[[http://ac4-asoymon-001.ysm.corp.ac4.yahoo.com:9999/nagios/APEXSTG/cgi-bin/status.cgi?hostgroup=aptui&style=detail][Staging]]] 
+     [[[http://ac4-asoymon-001.ysm.corp.ac4.yahoo.com:9999/nagios/APEXINT/cgi-bin/status.cgi?hostgroup=aptui&style=detail][Integration]]] 
+
+Subscribe to Alerts:
+   * ilist :
+     [[[http://ilist.yahoo.com/wws/info/demandui-alerts-prod?yc=O8K_SqcAWKxm3hdIe7I67g--][Prod]]]
+     [[[http://ilist.yahoo.com/wws/info/demandui-alerts-nonprod?yc=O8K_SqcAWKxm3hdIe7I67g--][Nonprod]]]
+
+
+---+++ System Health Monitoring
+
+%INCLUDE{"Apex.AptDeploymentCheckList"}%
+
+---+++ Critical Host Monitoring
+%H% This section should link to your critical host monitoring.
+
+Ywatch hardware monitoring:
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-001.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-002.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-003.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-004.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-005.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-006.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-007.adx.ac4.yahoo.com&startDate=-30d
+
+http://yw2.ops.ac4.yahoo.com:9999/ywatch.ops/index.php?action=viewGraphs&host=ac4-1aptui-008.adx.ac4.yahoo.com&startDate=-30d
+
+---+++ Capacity Monitoring
+%H% This section should link to your capacity monitoring.
+
+Mondemand performance graphs for ac4 INT (moved out of LZ1):
+
+http://ac4-mondmd-001.ysm.ac4.yahoo.com:9999/cgi-bin/mondemand/index.cgi?target=/AdvertiserSystems/ac4_INT/Performance/DemandApp
+
+Once graphs are built up, dashboards will be created
+
+
+---+++ Metrics Monitoring
+%H% This section should link to your metrics monitoring, and highlight the important metrics that should be looked at first.
+
+   * TBD
+
+---+++ SLA Monitoring
+%H% This section should link to your SLA monitoring.
+
+Apex SLA twiki:  http://twiki.corp.yahoo.com/view/SATG/TMApexSLAs
